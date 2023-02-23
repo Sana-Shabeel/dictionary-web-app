@@ -1,12 +1,15 @@
+import { Box, Flex, Text } from "@chakra-ui/react";
 import { useState } from "react";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <div className="App">
-      {/* <Text>HELLO WORLD</Text> */}
-      <h1>HELLO WORLD</h1>
+    <div>
+      <Flex>
+        <Navbar />
+      </Flex>
     </div>
   );
 }
