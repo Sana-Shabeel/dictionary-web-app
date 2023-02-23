@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Menu,
   MenuButton,
@@ -21,23 +21,32 @@ const menuItems = [
 ];
 
 const DropDown = () => {
+  const [selected, setSelected] = useState({
+    title: "Sans serif",
+    fontFamily: "'Inter', sans-serif",
+  });
   return (
     <Menu>
       <MenuButton>
         <Flex justifyContent={"space-between"} alignItems="center" gap={2}>
-          <Text>Sans Serif</Text>
-          <ChevronDownIcon />
+          <Text fontFamily={selected.fontFamily} fontWeight="700">
+            {selected.title}
+          </Text>
+          <ChevronDownIcon color={"blue.400"} fontSize="2rem" />
         </Flex>
       </MenuButton>
       <MenuList>
-        {menuItems.map(({ title, fontFamily }) => (
+        {menuItems.map((item, idx) => (
           <MenuItem
-            fontFamily={fontFamily}
+            key={idx}
+            fontFamily={item.fontFamily}
             fontWeight="700"
+            bg="inherit"
+            onClick={(e) => setSelected(item)}
             _hover={{ background: "transparent", color: "gray.200" }}
             _focus={{ background: "transparent", color: "purple" }}
           >
-            {title}
+            {item.title}
           </MenuItem>
         ))}
       </MenuList>
