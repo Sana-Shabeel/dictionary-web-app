@@ -1,16 +1,26 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Text,
+  useColorMode,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import { useState } from "react";
 import Navbar from "./components/Navbar/Navbar";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const { toggleColorMode, colorMode } = useColorMode();
+  const textColor = useColorModeValue("lightGray", "purple");
+
+  console.log(colorMode);
 
   return (
-    <div>
+    <Box width={{ base: "93%", lg: "800px" }} marginInline="auto">
       <Flex>
         <Navbar />
       </Flex>
-    </div>
+      <Text fontFamily="4rem">{colorMode === "light" ? "LIGHT" : "DARK"}</Text>
+    </Box>
   );
 }
 
