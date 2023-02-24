@@ -6,6 +6,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import InputField from "./components/Input/Input";
 import Navbar from "./components/Navbar/Navbar";
 
 function App() {
@@ -16,10 +17,8 @@ function App() {
 
   return (
     <Box width={{ base: "93%", lg: "800px" }} marginInline="auto">
-      <Flex>
-        <Navbar />
-      </Flex>
-      <Text fontFamily="4rem">{colorMode === "light" ? "LIGHT" : "DARK"}</Text>
+      <Navbar />
+      <InputField />
     </Box>
   );
 }
