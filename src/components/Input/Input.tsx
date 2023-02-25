@@ -9,42 +9,18 @@ import useDebounce from "../../hooks/useDebounce";
 interface Props {
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
-  // onSubmitValue: (e: React.FormEvent) => void;
+  onSubmitValue: (
+    e: React.FormEvent,
+    inputRef: React.RefObject<HTMLInputElement>
+  ) => void;
 }
 
-const fetchData = (value: string) => {
-  return axios
-    .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${value}`)
-    .then((res) => res.data);
-};
-
-const InputField = () => {
-  const queryClient = useQueryClient();
+const InputField = ({ value, setValue, onSubmitValue }: Props) => {
   const bg = useColorModeValue("input", "darkerBlack");
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const [value, setValue] = useState("keyboard");
-
-  // const debouncedInputValue = useDebounce(value, 200);
-
-  const { isLoading, error, data, refetch } = useQuery({
-    queryKey: ["inputValue"],
-    queryFn: () => fetchData(value),
-  });
-
-  if (isLoading) return <h1>Loading...</h1>;
-  if (error) return <pre>error</pre>;
-
-  const onSubmitValue = (e: React.FormEvent) => {
-    e.preventDefault();
-    inputRef.current?.blur();
-    refetch();
-  };
-
-  console.log(data[0].word);
-
   return (
-    <form onSubmit={onSubmitValue}>
+    <form onSubmit={(e) => onSubmitValue(e, inputRef)}>
       <InputGroup size="md">
         <Input
           defaultValue={value}
