@@ -16,15 +16,12 @@ const baseStyle = definePartsStyle((props) => ({
     // bg: "rgba(0, 0, 0, 0.6)",
   },
   item: {
+    // bg: "blue",
     p: 2, // set padding to 2
     "&::marker": {
       // change color for marker
-      color: mode("blue.500", "blue.200")(props),
+      color: "#a445ed",
     },
-  },
-  icon: {
-    //change color for icon
-    color: mode("blue.500", "blue.200"),
   },
 }));
 
