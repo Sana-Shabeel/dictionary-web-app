@@ -1,20 +1,14 @@
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import {
   Box,
-  Button,
   Divider,
   Flex,
   Image,
   Link,
-  List,
-  ListIcon,
-  ListItem,
   Text,
-  UnorderedList,
-  useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FontContext, FontContextType } from "../../App";
 import { Root } from "../../model";
 import Meaning from "./MeaningList";
@@ -28,15 +22,11 @@ const DisplayData = ({ data }: Props) => {
   const [isDisabled, setIsDisabled] = useState(false);
   const color = useColorModeValue("black", "white");
 
-  // console.log("phonetics", phonetics);
-
   // font family
   const font = useContext<FontContextType>(FontContext);
 
   // play audio
   const playAudio = (audioLink: string | undefined) => {
-    console.log(audioLink);
-
     if (audioLink) {
       const audio = new Audio(audioLink);
       audio.play();
@@ -55,11 +45,6 @@ const DisplayData = ({ data }: Props) => {
       setIsDisabled(false);
     }
   }, [data]);
-
-  console.log("text", phonetics);
-  console.log("audio", withAudio?.audio);
-
-  console.log(isDisabled);
 
   return (
     <Box mt="2em" fontFamily={font.selected.fontFamily}>
