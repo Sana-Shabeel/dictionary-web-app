@@ -1,6 +1,7 @@
 import { extendTheme, useColorModeValue } from "@chakra-ui/react";
 import type { StyleFunctionProps } from "@chakra-ui/styled-system";
 import { mode } from "@chakra-ui/theme-tools";
+import { listTheme } from "./listTheme";
 
 import { switchTheme } from "./switchTheme";
 
@@ -29,6 +30,7 @@ const theme = {
   },
   components: {
     Switch: switchTheme,
+    List: listTheme,
   },
 };
 
