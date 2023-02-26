@@ -10,7 +10,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import DropDown from "./DropDown";
-import MoonIcon from "./MoonIcon";
+import MoonIcon from "../../icons/MoonIcon";
 
 const Navbar = () => {
   const { toggleColorMode, colorMode } = useColorMode();
