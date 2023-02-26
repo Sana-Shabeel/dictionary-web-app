@@ -1,18 +1,14 @@
-import React, { useState } from "react";
+import { ChevronDownIcon } from "@chakra-ui/icons";
 import {
+  Flex,
   Menu,
   MenuButton,
-  MenuList,
   MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
-  Button,
-  Flex,
+  MenuList,
   Text,
 } from "@chakra-ui/react";
-import { ChevronDownIcon } from "@chakra-ui/icons";
+import { useContext } from "react";
+import { FontContext, FontContextType } from "../../App";
 
 const menuItems = [
   { title: "Sans Serif", fontFamily: "'Inter', sans-serif" },
@@ -21,10 +17,12 @@ const menuItems = [
 ];
 
 const DropDown = () => {
-  const [selected, setSelected] = useState({
-    title: "Sans serif",
-    fontFamily: "'Inter', sans-serif",
-  });
+  // get values from context
+
+  const { selected, setSelected } = useContext<FontContextType>(FontContext);
+
+  console.log(selected);
+
   return (
     <Menu>
       <MenuButton>
