@@ -42,8 +42,8 @@ function App() {
 
   // selected in dropdown component
   const [selected, setSelected] = useState({
-    title: "Sans serif",
-    fontFamily: "'Inter', sans-serif",
+    title: "Serif",
+    fontFamily: "'Lora', serif",
   });
   // will be passed to context as a value
   const values = { selected, setSelected };
