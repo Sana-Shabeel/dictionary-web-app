@@ -2,8 +2,9 @@ import { SearchIcon } from "@chakra-ui/icons";
 import { InputGroup, InputRightElement, Input } from "@chakra-ui/input";
 import { Button, useColorModeValue } from "@chakra-ui/react";
 import axios from "axios";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import { useQuery, useQueryClient } from "react-query";
+import { FontContext } from "../../App";
 import useDebounce from "../../hooks/useDebounce";
 
 interface Props {
@@ -19,6 +20,8 @@ const InputField = ({ value, setValue, onSubmitValue }: Props) => {
   const bg = useColorModeValue("input", "darkerBlack");
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const fontContext = useContext(FontContext);
+
   return (
     <form onSubmit={(e) => onSubmitValue(e, inputRef)}>
       <InputGroup size="md">
@@ -32,6 +35,7 @@ const InputField = ({ value, setValue, onSubmitValue }: Props) => {
           height={{ base: "3rem", md: "3.7rem" }}
           borderRadius="10px"
           fontWeight="bold"
+          fontFamily={fontContext.selected.fontFamily}
           type="text"
           bg={bg}
           placeholder="Search for any word..."
