@@ -16,3 +16,37 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+.span-synonyms {
+  color: #a445ed;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+@media only screen and (max-width: 1024px) {
+  .span-synonyms {
+    font-size: 1.2rem;
+  }
+}
+
+/*     width={{ base: "48px", md: "80px" }}
+          height={{ base: "48px", md: "80px" }}
+          borderRadius="full"
+          backgroundColor="yellow"
+          // _hover={{ bg: "transparent" }}
+          
+          */
+
+.btn-play {
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+
+  /* background: #000; */
+}
+
+.btn-play:disabled,
+.btn-play[disabled] {
+  filter: grayscale(1);
+  cursor: not-allowed;
+}
