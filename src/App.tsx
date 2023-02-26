@@ -4,6 +4,8 @@ import { createContext, useState } from "react";
 import { useQuery } from "react-query";
 import DisplayData from "./components/displayData/DisplayData";
 import InputField from "./components/Input/Input";
+import Error from "./components/LoadingError/Error";
+import Loading from "./components/LoadingError/Loading";
 import Navbar from "./components/Navbar/Navbar";
 import useDebounce from "./hooks/useDebounce";
 
@@ -38,7 +40,7 @@ const fetchData = (value: string | undefined) => {
 
 function App() {
   const [value, setValue] = useState("keyboard");
-  const debouncedValue = useDebounce(value, 200);
+  // const debouncedValue = useDebounce(value, 200);
 
   // selected in dropdown component
   const [selected, setSelected] = useState({
@@ -53,8 +55,9 @@ function App() {
     queryFn: () => {
       console.log("fetching");
 
-      return fetchData(debouncedValue);
+      return fetchData(value);
     },
+    retry: false,
   });
 
   const onSubmitValue = (
@@ -67,10 +70,11 @@ function App() {
     refetch();
   };
 
-  if (isLoading) return <h1>Loading...</h1>;
-  if (error) return <pre>error</pre>;
-
-  console.table(data);
+  if (isLoading) return <Loading />;
+  // if (error) {
+  //   console.table();
+  //   return <Error error={error.response.data} />;
+  // }
 
   return (
     <FontContext.Provider value={values}>
@@ -82,7 +86,11 @@ function App() {
           onSubmitValue={onSubmitValue}
         />
 
-        <DisplayData data={data} />
+        {error ? (
+          <Error error={error.response.data} />
+        ) : (
+          <DisplayData data={data} />
+        )}
       </Box>
     </FontContext.Provider>
   );
