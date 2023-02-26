@@ -1,14 +1,18 @@
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
   Divider,
   Flex,
   Image,
+  Link,
   List,
   ListIcon,
   ListItem,
   Text,
   UnorderedList,
+  useColorMode,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { FontContext, FontContextType } from "../../App";
@@ -22,7 +26,7 @@ interface Props {
 const DisplayData = ({ data }: Props) => {
   const [{ word, phonetics, meanings, sourceUrls }] = data;
   const [isDisabled, setIsDisabled] = useState(false);
-  // const [playAudio, setPlayAudio] = useState();
+  const color = useColorModeValue("black", "white");
 
   // console.log("phonetics", phonetics);
 
@@ -45,13 +49,15 @@ const DisplayData = ({ data }: Props) => {
 
   // play button
   useEffect(() => {
-    if (!withAudio?.audio) {
+    if (withAudio?.audio === undefined) {
       setIsDisabled(true);
+    } else {
+      setIsDisabled(false);
     }
   }, [data]);
 
   console.log("text", phonetics);
-  console.log("audio", withAudio);
+  console.log("audio", withAudio?.audio);
 
   console.log(isDisabled);
 
@@ -82,6 +88,28 @@ const DisplayData = ({ data }: Props) => {
       {meanings.map((meaning) => (
         <Meaning meaning={meaning} />
       ))}
+
+      {/* source */}
+      <Divider mt="2rem" />
+      <Flex
+        alignItems={{ base: "flex-start", md: "center" }}
+        gap="1rem"
+        margin="1rem 0 3rem 1rem"
+      >
+        <Text fontSize="0.9rem" color="teal.500">
+          Source
+        </Text>
+        <Link
+          mr={"1rem"}
+          color={{ color: color }}
+          href="#"
+          fontSize="0.8rem"
+          overflow={"hidden"}
+        >
+          {sourceUrls}
+          <ExternalLinkIcon mx="2px" />
+        </Link>
+      </Flex>
     </Box>
   );
 };
