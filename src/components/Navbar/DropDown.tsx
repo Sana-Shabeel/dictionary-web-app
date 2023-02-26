@@ -11,8 +11,8 @@ import { useContext } from "react";
 import { FontContext, FontContextType } from "../../App";
 
 const menuItems = [
-  { title: "Sans Serif", fontFamily: "'Inter', sans-serif" },
   { title: "Serif", fontFamily: "'Lora', serif" },
+  { title: "Sans Serif", fontFamily: "'Inter', sans-serif" },
   { title: "Monospace", fontFamily: "'Space Mono', monospace" },
 ];
 
