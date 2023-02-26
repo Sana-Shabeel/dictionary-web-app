@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Divider,
   Flex,
   Image,
@@ -9,9 +10,10 @@ import {
   Text,
   UnorderedList,
 } from "@chakra-ui/react";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { FontContext, FontContextType } from "../../App";
 import { Root } from "../../model";
+import Meaning from "./MeaningList";
 
 interface Props {
   data: Root;
@@ -19,27 +21,39 @@ interface Props {
 
 const DisplayData = ({ data }: Props) => {
   const [{ word, phonetics, meanings, sourceUrls }] = data;
+  const [isDisabled, setIsDisabled] = useState(false);
+  // const [playAudio, setPlayAudio] = useState();
 
-  console.log(phonetics);
+  // console.log("phonetics", phonetics);
 
   // font family
   const font = useContext<FontContextType>(FontContext);
 
   // play audio
-  const playAudio = (audioLink: string) => {
+  const playAudio = (audioLink: string | undefined) => {
+    console.log(audioLink);
+
     if (audioLink) {
       const audio = new Audio(audioLink);
       audio.play();
     }
   };
 
-  //TODO search word board
-  // get the object with the audio
-  const [{ text, audio }] = phonetics.filter((item) => item.audio.length !== 0);
+  // return the object with audio or just the text
+  const [{ text }] = phonetics;
+  const withAudio = phonetics.find(({ audio }) => audio);
 
-  const [noun, verb] = meanings;
+  // play button
+  useEffect(() => {
+    if (!withAudio?.audio) {
+      setIsDisabled(true);
+    }
+  }, [data]);
 
-  console.log("meanings", noun.partOfSpeech);
+  console.log("text", phonetics);
+  console.log("audio", withAudio);
+
+  console.log(isDisabled);
 
   return (
     <Box mt="2em" fontFamily={font.selected.fontFamily}>
@@ -52,40 +66,22 @@ const DisplayData = ({ data }: Props) => {
             {text}
           </Text>
         </Box>
-        <Box>
+        <button
+          className="btn-play"
+          disabled={isDisabled}
+          onClick={() => playAudio(withAudio?.audio)}
+        >
           <Image
-            width={{ base: "3em", md: "5em" }}
+            width={{ base: "48px", md: "80px" }}
             src="/public/images/icon-play.svg"
-            onClick={() => playAudio(audio)}
-            cursor="pointer"
             alt="play icon"
           />
-        </Box>
+        </button>
       </Flex>
 
-      {/* noun */}
-      <Flex alignItems="center" mt={5}>
-        <Text fontWeight="bold">{noun.partOfSpeech}</Text>
-        <Divider ml="1rem" />
-      </Flex>
-
-      <Text>Meaning</Text>
-      <List variant="custom">
-        {noun.definitions.map(({ definition, example }) => (
-          <>
-            <ListItem fontSize={{ base: "1rem", md: "1.2rem" }}>
-              {definition}
-            </ListItem>
-            <Text
-              margin="1em 0"
-              color="gray"
-              fontSize={{ base: "1rem", md: "1.2rem" }}
-            >
-              {example ? `"${example}"` : null}
-            </Text>
-          </>
-        ))}
-      </List>
+      {meanings.map((meaning) => (
+        <Meaning meaning={meaning} />
+      ))}
     </Box>
   );
 };
