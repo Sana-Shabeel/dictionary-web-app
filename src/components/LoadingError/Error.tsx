@@ -1,10 +1,13 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
+import axios, { AxiosError } from "axios";
 
 interface Props {
-  error: {};
+  error: any;
 }
 
 const Error = ({ error }: Props) => {
+  console.log(error);
+
   return (
     <Flex
       margin={"10rem 0"}
@@ -20,12 +23,12 @@ const Error = ({ error }: Props) => {
           margin="1rem 0"
           fontWeight="bold"
         >
-          {error?.title}
+          {error?.response?.data.title}
         </Text>
         <Text
           fontSize={{ base: "1rem", md: "1.4rem" }}
           color={"darkGray"}
-        >{`${error?.message} ${error?.resolution}`}</Text>
+        >{`${error?.response?.data.message} ${error?.response?.data.resolution}`}</Text>
       </Box>
     </Flex>
   );

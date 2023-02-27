@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { createContext, useState } from "react";
 import { useQuery } from "react-query";
 import DisplayData from "./components/displayData/DisplayData";
@@ -22,6 +22,8 @@ export interface FontContextType {
   >;
 }
 
+// export interface ErrorMsg {}
+
 // context for font family
 export const FontContext = createContext<FontContextType>({
   selected: {
@@ -41,6 +43,7 @@ const fetchData = (value: string | undefined) => {
 function App() {
   const [value, setValue] = useState("keyboard");
   const [inputError, setInputError] = useState("");
+  // const [err, setErr] = useState({});
   // const debouncedValue = useDebounce(value, 200);
 
   // selected in dropdown component
@@ -79,6 +82,8 @@ function App() {
 
   if (isLoading) return <Loading />;
 
+  console.log(error);
+
   return (
     <FontContext.Provider value={values}>
       <Box width={{ base: "93%", lg: "800px" }} marginInline="auto">
@@ -90,11 +95,7 @@ function App() {
           onSubmitValue={onSubmitValue}
         />
 
-        {error ? (
-          <Error error={error.response.data} />
-        ) : (
-          <DisplayData data={data} />
-        )}
+        {error ? <Error error={error} /> : <DisplayData data={data} />}
       </Box>
     </FontContext.Provider>
   );

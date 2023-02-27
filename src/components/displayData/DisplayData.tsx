@@ -70,8 +70,8 @@ const DisplayData = ({ data }: Props) => {
         </button>
       </Flex>
 
-      {meanings.map((meaning) => (
-        <Meaning meaning={meaning} />
+      {meanings.map((meaning, idx) => (
+        <Meaning key={idx} meaning={meaning} />
       ))}
 
       {/* source */}

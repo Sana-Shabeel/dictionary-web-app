@@ -28,15 +28,15 @@ const MeaningList = ({ meaning }: Props) => {
         Meaning
       </Text>
       <UnorderedList>
-        {meaning.definitions.map(({ definition, example }) => (
-          <>
+        {meaning.definitions.map(({ definition, example }, idx) => (
+          <div key={idx}>
             <ListItem fontSize={{ base: "1rem", md: "1.2rem" }}>
               {definition}
             </ListItem>
             <Text color="gray" fontSize={{ base: "1rem", md: "1.2rem" }}>
               {example ? `"${example}"` : null}
             </Text>
-          </>
+          </div>
         ))}
       </UnorderedList>
 
@@ -52,8 +52,10 @@ const MeaningList = ({ meaning }: Props) => {
             Synonyms
           </Text>
 
-          {meaning.synonyms.map((synonym) => (
-            <span className="span-synonyms">{synonym}</span>
+          {meaning.synonyms.map((synonym, idx) => (
+            <span key={idx} className="span-synonyms">
+              {synonym}
+            </span>
           ))}
         </Flex>
       ) : null}
