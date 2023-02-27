@@ -71,10 +71,6 @@ function App() {
   };
 
   if (isLoading) return <Loading />;
-  // if (error) {
-  //   console.table();
-  //   return <Error error={error.response.data} />;
-  // }
 
   return (
     <FontContext.Provider value={values}>

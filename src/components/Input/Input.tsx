@@ -1,11 +1,8 @@
 import { SearchIcon } from "@chakra-ui/icons";
-import { InputGroup, InputRightElement, Input } from "@chakra-ui/input";
-import { Button, useColorModeValue } from "@chakra-ui/react";
-import axios from "axios";
-import React, { useState, useRef, useEffect, useContext } from "react";
-import { useQuery, useQueryClient } from "react-query";
+import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
+import { useColorModeValue } from "@chakra-ui/react";
+import React, { useContext, useRef } from "react";
 import { FontContext } from "../../App";
-import useDebounce from "../../hooks/useDebounce";
 
 interface Props {
   value: string;
