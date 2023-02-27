@@ -23,7 +23,7 @@ const Navbar = () => {
       padding="2em 0"
       marginInline="auto"
     >
-      <Image src="/public/images/logo.svg" />
+      <Image src="/images/logo.svg" />
       <Flex alignItems="center" gap={{ base: "8px", md: "1rem" }}>
         <DropDown />
         <Box height="2rem" width="1.6px" bg={"lightGray"}></Box>
