@@ -18,7 +18,6 @@ const menuItems = [
 
 const DropDown = () => {
   // get values from context
-
   const { selected, setSelected } = useContext<FontContextType>(FontContext);
 
   console.log(selected);
