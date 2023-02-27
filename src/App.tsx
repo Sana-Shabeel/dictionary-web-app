@@ -40,6 +40,7 @@ const fetchData = (value: string | undefined) => {
 
 function App() {
   const [value, setValue] = useState("keyboard");
+  const [inputError, setInputError] = useState("");
   // const debouncedValue = useDebounce(value, 200);
 
   // selected in dropdown component
@@ -67,6 +68,12 @@ function App() {
     e.preventDefault();
     inputRef.current?.blur();
 
+    if (inputRef.current?.value.trim().length === 0) {
+      setInputError("Input cannot be empty");
+    } else {
+      setInputError("");
+    }
+
     refetch();
   };
 
@@ -78,6 +85,7 @@ function App() {
         <Navbar />
         <InputField
           value={value}
+          inputError={inputError}
           setValue={setValue}
           onSubmitValue={onSubmitValue}
         />
