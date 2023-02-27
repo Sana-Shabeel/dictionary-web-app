@@ -6,16 +6,13 @@ import {
   UnorderedList,
 } from "@chakra-ui/layout";
 import { Box } from "@chakra-ui/react";
-import React from "react";
-import { Meaning, Root, Root2 } from "../../model";
+import { Meaning } from "../../model";
 
 interface Props {
   meaning: Meaning;
 }
 
 const MeaningList = ({ meaning }: Props) => {
-  // console.log("inside Meaning comp", meaning);
-
   return (
     <Box margin={"1rem 0"}>
       <Flex alignItems="center" mt={5}>
