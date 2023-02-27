@@ -23,8 +23,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Github](https://github.com/Sana-Shabeel/calculator-app)
-- Live Site URL: [netlify](https://ab-calculator-app.netlify.app/)
+- Solution URL: [Github](https://github.com/Sana-Shabeel/dictionary-web-app)
+- Live Site URL: [netlify](https://dictionary-web-app-ab.netlify.app/)
 
 ## My process
 
@@ -32,5 +32,6 @@ Users should be able to:
 
 - CSS Flexbox
 - [React](https://reactjs.org/) - JS library
+- [React query](https://react-query-v3.tanstack.com/) - API
 - [Typescript](https://www.typescriptlang.org/) - Typescript
 - [Chakra UI](https://chakra-ui.com/) - For styles
