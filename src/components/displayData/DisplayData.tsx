@@ -64,7 +64,7 @@ const DisplayData = ({ data }: Props) => {
         >
           <Image
             width={{ base: "48px", md: "80px" }}
-            src="/public/images/icon-play.svg"
+            src="/images/icon-play.svg"
             alt="play icon"
           />
         </button>
