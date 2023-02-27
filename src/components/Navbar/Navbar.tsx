@@ -14,7 +14,6 @@ import MoonIcon from "../../icons/MoonIcon";
 
 const Navbar = () => {
   const { toggleColorMode, colorMode } = useColorMode();
-  // const color = useColorModeValue("gray", "blue");
 
   return (
     <Flex
