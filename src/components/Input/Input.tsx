@@ -1,11 +1,12 @@
 import { SearchIcon } from "@chakra-ui/icons";
 import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
-import { useColorModeValue } from "@chakra-ui/react";
+import { Text, useColorModeValue } from "@chakra-ui/react";
 import React, { useContext, useRef } from "react";
 import { FontContext } from "../../App";
 
 interface Props {
   value: string;
+  inputError: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
   onSubmitValue: (
     e: React.FormEvent,
@@ -13,7 +14,7 @@ interface Props {
   ) => void;
 }
 
-const InputField = ({ value, setValue, onSubmitValue }: Props) => {
+const InputField = ({ value, inputError, setValue, onSubmitValue }: Props) => {
   const bg = useColorModeValue("input", "darkerBlack");
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -43,6 +44,11 @@ const InputField = ({ value, setValue, onSubmitValue }: Props) => {
           <SearchIcon color={"purple"} />
         </InputRightElement>
       </InputGroup>
+      {inputError && (
+        <Text fontSize={"1.2rem"} color="red" textAlign="center" mt={"1rem"}>
+          {inputError}
+        </Text>
+      )}
     </form>
   );
 };
