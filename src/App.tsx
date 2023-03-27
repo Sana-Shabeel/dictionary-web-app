@@ -82,8 +82,6 @@ function App() {
 
   if (isLoading) return <Loading />;
 
-  console.log(error);
-
   return (
     <FontContext.Provider value={values}>
       <Box width={{ base: "93%", lg: "800px" }} marginInline="auto">
