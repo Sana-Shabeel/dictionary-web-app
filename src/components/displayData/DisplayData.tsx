@@ -21,6 +21,7 @@ const DisplayData = ({ data }: Props) => {
   const [{ word, phonetics, meanings, sourceUrls }] = data;
   const [isDisabled, setIsDisabled] = useState(false);
   const color = useColorModeValue("black", "white");
+  console.log(data);
 
   // font family
   const font = useContext<FontContextType>(FontContext);
@@ -33,8 +34,6 @@ const DisplayData = ({ data }: Props) => {
     }
   };
 
-  // return the object with audio or just the text
-  const [{ text }] = phonetics;
   const withAudio = phonetics.find(({ audio }) => audio);
 
   // play button
@@ -53,9 +52,12 @@ const DisplayData = ({ data }: Props) => {
           <Text fontSize={{ base: "2rem", md: "4rem" }} fontWeight="bold">
             {word}
           </Text>
-          <Text color="purple" fontSize="1.5rem">
-            {text}
-          </Text>
+          {/* phonetics could potentially be an empty array so destructuring the arrayb would throw an error that could break the site */}
+          {phonetics.length > 0 ? (
+            <Text color="purple" fontSize="1.5rem">
+              {Object.values(phonetics)[0].text}
+            </Text>
+          ) : null}
         </Box>
         <button
           className="btn-play"
@@ -91,7 +93,7 @@ const DisplayData = ({ data }: Props) => {
           fontSize="0.8rem"
           overflow={"hidden"}
         >
-          {sourceUrls}
+          {sourceUrls[0]}
           <ExternalLinkIcon mx="2px" />
         </Link>
       </Flex>
