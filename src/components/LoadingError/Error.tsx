@@ -6,8 +6,6 @@ interface Props {
 }
 
 const Error = ({ error }: Props) => {
-  console.log(error);
-
   return (
     <Flex
       margin={"10rem 0"}
@@ -35,13 +33,3 @@ const Error = ({ error }: Props) => {
 };
 
 export default Error;
-
-/*
-className="text-center flex gap-4 flex-col
-        className="text-xl font-bold dark:text-white"
-
-        className="text-darkGray text-[18px] dark:text-white"
-
-
-
-*/
